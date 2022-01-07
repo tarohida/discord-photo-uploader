@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Tests\Domain\DiscordImage;
 
-use App\Domain\DiscordImage\DiscordImage;
+use App\Domain\DiscordImage\DiscordImageUrl;
 
 use App\Infrastructure\ImageDownloadClient\ImageDownloadClientInterface;
 use PHPUnit\Framework\TestCase;
@@ -23,7 +23,7 @@ class DiscordImageTest extends TestCase
             ->method('fetchImage')
             ->with($url)
             ->willReturn($expected_image);
-        $image = new DiscordImage($url);
+        $image = new DiscordImageUrl($url);
         self::assertSame($expected_image, $image->fetchImage($client_mock));
     }
 

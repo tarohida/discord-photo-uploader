@@ -5,7 +5,7 @@ namespace App\Domain\DiscordImage;
 
 use App\Infrastructure\ImageDownloadClient\ImageDownloadClientInterface;
 
-class DiscordImage
+class DiscordImageUrl
 {
     private string $url;
 
