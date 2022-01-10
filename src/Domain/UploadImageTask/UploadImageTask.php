@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Domain\UploadImageTask;
 
+use App\Domain\DiscordImage\DiscordImageUrl;
 use App\Domain\UploadImageTask\Exception\InvalidIdException;
+use App\Infrastructure\UploadImageTask\UploadImageTaskRepositoryInterface;
 
 class UploadImageTask
 {
@@ -12,7 +14,7 @@ class UploadImageTask
     /**
      * @throws InvalidIdException
      */
-    public function __construct(int $id)
+    public function __construct(int $id, private DiscordImageUrl $url)
     {
         if ($id <= 0) {
             throw new InvalidIdException();
@@ -23,5 +25,12 @@ class UploadImageTask
     public function equals(self $task): bool
     {
         return $this->id === $task->id;
+    }
+
+    public function saveTo(UploadImageTaskRepositoryInterface $repository)
+    {
+        $url = $this->url->getDao()->getUrl();
+        $dao = new UploadImageTaskDao($this->id, $url);
+        $repository->save($dao);
     }
 }

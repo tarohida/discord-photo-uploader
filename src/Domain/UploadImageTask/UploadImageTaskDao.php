@@ -21,4 +21,10 @@ class UploadImageTaskDao
     {
         return $this->url;
     }
+
+    public function equals(self $dao): bool
+    {
+        return $this->id === $dao->id &&
+            $this->url === $dao->url;
+    }
 }
