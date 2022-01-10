@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Tests\Domain\DiscordImage;
 
+use App\Domain\DiscordImage\DiscordImage;
 use App\Domain\DiscordImage\DiscordImageUrl;
 
 use Tests\AppTestCase;
@@ -19,6 +20,6 @@ class DiscordImageUrlTest extends AppTestCase
         $expected_image = 'this is image byte string';
         $client_mock = $this->getClientMockExpectCallFetchImageWithUrlWillReturnImage($url, $expected_image);
         $image = new DiscordImageUrl($url);
-        self::assertSame($expected_image, $image->fetchImage($client_mock));
+        self::assertObjectEquals(new DiscordImage($expected_image), $image->fetchImage($client_mock));
     }
 }

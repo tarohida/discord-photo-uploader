@@ -1,8 +1,13 @@
 <?php
+/** @noinspection NonAsciiCharacters */
+/** @noinspection PhpUnhandledExceptionInspection */
+/** @noinspection PhpDocMissingThrowsInspection */
+/** @noinspection PhpPrivateFieldCanBeLocalVariableInspection */
 declare(strict_types=1);
 
 namespace Tests;
 
+use App\Domain\DiscordImage\DiscordImage;
 use App\Domain\DiscordImage\DiscordImageDao;
 use App\Domain\DiscordImage\DiscordImageUrlDao;
 use App\Infrastructure\ImageDownloadClient\ImageDownloadClientInterface;
@@ -36,13 +41,14 @@ class AppTestCase extends TestCase
     protected function getClientMockExpectCallFetchImageWithUrlWillReturnImage(string $url, string $expected_image): ImageDownloadClientInterface
     {
         $dao = new DiscordImageUrlDao($url);
+        $image = new DiscordImage($expected_image);
         $client_mock = $this->createMock(ImageDownloadClientInterface::class);
-        $client_mock->expects(TestCase::once())
+        $client_mock->expects(self::once())
             ->method('fetchImage')
             ->with(
                 $this->objectEquals($dao)
             )
-            ->willReturn($expected_image);
+            ->willReturn($image);
         return $client_mock;
     }
 }

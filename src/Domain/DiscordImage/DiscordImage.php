@@ -34,4 +34,9 @@ class DiscordImage
         $dao = new DiscordImageDao($this->image);
         $client->upload($dao);
     }
+
+    public function equals(self $image): bool
+    {
+        return $this->image === $image->image;
+    }
 }
