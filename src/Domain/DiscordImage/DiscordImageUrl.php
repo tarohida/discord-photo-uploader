@@ -5,6 +5,7 @@ namespace App\Domain\DiscordImage;
 
 use App\Domain\DiscordImage\Exception\UrlValidateException;
 use App\Infrastructure\ImageDownloadClient\ImageDownloadClientInterface;
+use JetBrains\PhpStorm\Pure;
 
 class DiscordImageUrl
 {
@@ -21,9 +22,14 @@ class DiscordImageUrl
         $this->url = $url;
     }
 
+    #[Pure] public function getDao(): DiscordImageUrlDao
+    {
+        return new DiscordImageUrlDao($this->url);
+    }
+
     public function fetchImage(ImageDownloadClientInterface $client): string
     {
-        $dao = new DiscordImageUrlDao($this->url);
+        $dao = $this->getDao();
         return $client->fetchImage($dao);
     }
 }
