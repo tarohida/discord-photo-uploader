@@ -10,18 +10,18 @@ use JetBrains\PhpStorm\Pure;
  */
 class DiscordImageDao
 {
-    public function getUrl(): string
+    public function getBytes(): string
     {
-        return $this->url;
+        return $this->bytes_of_image;
     }
 
     #[Pure] public function equals(self $dao): bool
     {
-        return $this->getUrl() === $dao->getUrl();
+        return $this->getBytes() === $dao->getBytes();
     }
 
     public function __construct(
-        private string $url
+        private string $bytes_of_image
     )
     {
     }
