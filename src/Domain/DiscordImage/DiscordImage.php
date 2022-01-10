@@ -31,6 +31,7 @@ class DiscordImage
 
     public function upload(ImageUploadClientInterface $client)
     {
-        $client->upload($this->image);
+        $dao = new DiscordImageDao($this->image);
+        $client->upload($dao);
     }
 }

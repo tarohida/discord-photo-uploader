@@ -9,6 +9,7 @@ namespace Tests\Domain\DiscordImage;
 
 use App\Domain\DiscordImage\DiscordImage;
 
+use App\Domain\DiscordImage\DiscordImageDao;
 use App\Infrastructure\ImageUploadClient\ImageUploadClientInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -28,10 +29,13 @@ class DiscordImageTest extends TestCase
      */
     protected function createClientMockExpectUploadMethodWithExpectedImage(string $expected_image): ImageUploadClientInterface
     {
+        $expected_dao = new DiscordImageDao($expected_image);
         $client = $this->createMock(ImageUploadClientInterface::class);
         $client->expects(self::once())
             ->method('upload')
-            ->with($expected_image);
+            ->with(
+                $this->objectEquals($expected_dao)
+            );
         return $client;
     }
 }
