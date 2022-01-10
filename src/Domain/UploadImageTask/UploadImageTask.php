@@ -39,7 +39,7 @@ class UploadImageTask
     public function run(ImageUploadClientInterface $upload_client, ImageDownloadClientInterface $download_client, UploadImageTaskRepositoryInterface $repository)
     {
         $image = $this->url->fetchImage($download_client);
-        $image->upload($upload_client);
+        $image->uploadTo($upload_client);
         $repository->delete($this);
     }
 }

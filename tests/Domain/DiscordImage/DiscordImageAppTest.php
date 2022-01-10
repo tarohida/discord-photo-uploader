@@ -18,6 +18,6 @@ class DiscordImageAppTest extends AppTestCase
         $expected_image = 'image byte string';
         $client = $this->createUploadClientMockExpectCallMethodUploadWithExpectedImage($expected_image);
         $image = new DiscordImage($expected_image);
-        $image->upload($client);
+        $image->uploadTo($client);
     }
 }
