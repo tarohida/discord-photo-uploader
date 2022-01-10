@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Domain\DiscordImage;
 
 use App\Domain\DiscordImage\Exception\ImageMustNotEmptyException;
-use App\Infrastructure\ImageUploadClient\ImageUploadClientInterface;
+use App\Infrastructure\ImageStorage\ImageStorageInterface;
 
 class DiscordImage
 {
@@ -29,7 +29,7 @@ class DiscordImage
         }
     }
 
-    public function uploadTo(ImageUploadClientInterface $client)
+    public function uploadTo(ImageStorageInterface $client)
     {
         $dao = new DiscordImageDao($this->image);
         $client->upload($dao);

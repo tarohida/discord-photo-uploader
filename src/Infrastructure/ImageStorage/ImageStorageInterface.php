@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Infrastructure\ImageUploadClient;
+namespace App\Infrastructure\ImageStorage;
 
 use App\Domain\DiscordImage\DiscordImageDao;
 
-interface ImageUploadClientInterface
+interface ImageStorageInterface
 {
     public function upload(DiscordImageDao $image): void;
 }

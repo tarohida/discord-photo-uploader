@@ -6,7 +6,7 @@ namespace App\Domain\UploadImageTask;
 use App\Domain\DiscordImage\DiscordImageUrl;
 use App\Domain\UploadImageTask\Exception\InvalidIdException;
 use App\Infrastructure\ImageDownloadClient\ImageDownloadClientInterface;
-use App\Infrastructure\ImageUploadClient\ImageUploadClientInterface;
+use App\Infrastructure\ImageStorage\ImageStorageInterface;
 use App\Infrastructure\UploadImageTask\UploadImageTaskRepositoryInterface;
 
 class UploadImageTask
@@ -36,7 +36,7 @@ class UploadImageTask
         $repository->save($dao);
     }
 
-    public function run(ImageUploadClientInterface $upload_client, ImageDownloadClientInterface $download_client, UploadImageTaskRepositoryInterface $repository)
+    public function run(ImageStorageInterface $upload_client, ImageDownloadClientInterface $download_client, UploadImageTaskRepositoryInterface $repository)
     {
         $image = $this->url->fetchImage($download_client);
         $image->uploadTo($upload_client);
