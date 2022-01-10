@@ -16,7 +16,7 @@ class DiscordImageAppTest extends AppTestCase
     public function test_method_upload_with_mocked_client()
     {
         $expected_image = 'image byte string';
-        $client = $this->createClientMockExpectUploadMethodWithExpectedImage($expected_image);
+        $client = $this->createUploadClientMockExpectCallMethodUploadWithExpectedImage($expected_image);
         $image = new DiscordImage($expected_image);
         $image->upload($client);
     }
