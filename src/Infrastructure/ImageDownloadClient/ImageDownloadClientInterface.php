@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\ImageDownloadClient;
 
+use App\Domain\DiscordImage\DiscordImageUrlDao;
+
 interface ImageDownloadClientInterface
 {
-    public function fetchImage(string $url): string;
+    public function fetchImage(DiscordImageUrlDao $url): string;
 }

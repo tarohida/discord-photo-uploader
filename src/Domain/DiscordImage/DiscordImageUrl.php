@@ -23,6 +23,7 @@ class DiscordImageUrl
 
     public function fetchImage(ImageDownloadClientInterface $client): string
     {
-        return $client->fetchImage($this->url);
+        $dao = new DiscordImageUrlDao($this->url);
+        return $client->fetchImage($dao);
     }
 }
