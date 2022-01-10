@@ -17,11 +17,21 @@ class DiscordImageTest extends TestCase
     public function test_method_upload_with_mocked_client()
     {
         $expected_image = 'image byte string';
+        $client = $this->createClientMockExpectUploadMethodWithExpectedImage($expected_image);
+        $image = new DiscordImage($expected_image);
+        $image->upload($client);
+    }
+
+    /**
+     * @param string $expected_image
+     * @return ImageUploadClientInterface
+     */
+    protected function createClientMockExpectUploadMethodWithExpectedImage(string $expected_image): ImageUploadClientInterface
+    {
         $client = $this->createMock(ImageUploadClientInterface::class);
         $client->expects(self::once())
             ->method('upload')
             ->with($expected_image);
-        $image = new DiscordImage($expected_image);
-        $image->upload($client);
+        return $client;
     }
 }
