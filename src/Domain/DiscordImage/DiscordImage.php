@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Domain\DiscordImage;
 
 use App\Domain\DiscordImage\Exception\ImageMustNotEmptyException;
-use App\Infrastructure\ImageStorage\ImageStorageInterface;
+use App\Infrastructure\ImageStorageInterface;
 
 class DiscordImage
 {

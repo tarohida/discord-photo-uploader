@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Infrastructure\ImageStorage;
+namespace App\Infrastructure;
 
 use App\Domain\DiscordImage\DiscordImageDao;
 

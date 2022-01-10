@@ -11,14 +11,14 @@ use App\Domain\DiscordImage\DiscordImage;
 use App\Domain\DiscordImage\DiscordImageDao;
 use App\Domain\DiscordImage\DiscordImageUrlDao;
 use App\Infrastructure\ImageDownloadClient\ImageDownloadClientInterface;
-use App\Infrastructure\ImageStorage\ImageStorageInterface;
+use App\Infrastructure\ImageStorageInterface;
 use PHPUnit\Framework\TestCase;
 
 class AppTestCase extends TestCase
 {
     /**
      * @param string $expected_image
-     * @return ImageStorageInterface
+     * @return \App\Infrastructure\ImageStorageInterface
      */
     protected function createUploadClientMockExpectCallMethodUploadWithExpectedImage(string $expected_image): ImageStorageInterface
     {
