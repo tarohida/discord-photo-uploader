@@ -13,9 +13,9 @@ use App\Domain\UploadImageTask\UploadImageTask;
 
 use App\Domain\UploadImageTask\UploadImageTaskDao;
 use App\Infrastructure\UploadImageTask\UploadImageTaskRepositoryInterface;
-use PHPUnit\Framework\TestCase;
+use Tests\AppTestCase;
 
-class UploadImageTaskTest extends TestCase
+class UploadImageTaskTest extends AppTestCase
 {
     public function test_method_equals()
     {
@@ -34,6 +34,21 @@ class UploadImageTaskTest extends TestCase
         $task = new UploadImageTask($id, $discordImageUrl);
         $repository = $this->createRepositoryMockExpectCallMethodSaveWithDao($id, $url);
         $task->saveTo($repository);
+    }
+
+    public function test_method_run()
+    {
+        $expected_image = 'this is expected image in upload image task test';
+        $url = 'https://example.example';
+        $discord_url = new DiscordImageUrl($url);
+        $upload_client = $this->createClientMockExpectUploadMethodWithExpectedImage($expected_image);
+        $download_client = $this->getClientMockExpectCallFetchImageWithUrlWillReturnImage($url, $expected_image);
+        $repository = $this->createMock(UploadImageTaskRepositoryInterface::class);
+        $task = new UploadImageTask(1, $discord_url);
+        $repository->expects(self::once())
+            ->method('delete')
+            ->with($task);
+        $task->run($upload_client, $download_client, $repository);
     }
 
     /**
