@@ -18,7 +18,7 @@ class DiscordImageUrlTest extends AppTestCase
     {
         $url = 'https://example.example';
         $expected_image = 'this is image byte string';
-        $client_mock = $this->getClientMockExpectCallFetchImageWithUrlWillReturnImage($url, $expected_image);
+        $client_mock = $this->createDownloadClientMockExpectCallMethodFetchImageWithUrlAndReturnImage($url, $expected_image);
         $image = new DiscordImageUrl($url);
         self::assertObjectEquals(new DiscordImage($expected_image), $image->fetchImage($client_mock));
     }

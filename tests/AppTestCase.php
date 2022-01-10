@@ -38,7 +38,7 @@ class AppTestCase extends TestCase
      * @param string $expected_image
      * @return ImageDownloadClientInterface
      */
-    protected function getClientMockExpectCallFetchImageWithUrlWillReturnImage(string $url, string $expected_image): ImageDownloadClientInterface
+    protected function createDownloadClientMockExpectCallMethodFetchImageWithUrlAndReturnImage(string $url, string $expected_image): ImageDownloadClientInterface
     {
         $dao = new DiscordImageUrlDao($url);
         $image = new DiscordImage($expected_image);

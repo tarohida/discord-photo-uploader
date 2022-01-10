@@ -42,7 +42,7 @@ class UploadImageTaskTest extends AppTestCase
         $url = 'https://example.example';
         $discord_url = new DiscordImageUrl($url);
         $upload_client = $this->createUploadClientMockExpectCallMethodUploadWithExpectedImage($expected_image);
-        $download_client = $this->getClientMockExpectCallFetchImageWithUrlWillReturnImage($url, $expected_image);
+        $download_client = $this->createDownloadClientMockExpectCallMethodFetchImageWithUrlAndReturnImage($url, $expected_image);
         $task = new UploadImageTask(1, $discord_url);
         $repository = $this->createUpdateImageTaskRepositoryMockExpectCallMethodDeleteWithExpectedTask($task);
         $task->run($upload_client, $download_client, $repository);
