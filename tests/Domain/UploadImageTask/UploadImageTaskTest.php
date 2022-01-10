@@ -32,13 +32,7 @@ class UploadImageTaskTest extends TestCase
         $url = 'http://example.example';
         $discordImageUrl = new DiscordImageUrl($url);
         $task = new UploadImageTask($id, $discordImageUrl);
-        $dao = new UploadImageTaskDao($id, $url);
-        $repository = $this->createMock(UploadImageTaskRepositoryInterface::class);
-        $repository->expects(self::once())
-            ->method('save')
-            ->with(
-                $this->objectEquals($dao)
-            );
+        $repository = $this->createRepositoryMockExpectCallMethodSaveWithDao($id, $url);
         $task->saveTo($repository);
     }
 
@@ -52,5 +46,22 @@ class UploadImageTaskTest extends TestCase
     {
         $discord_image_url = new DiscordImageUrl($url);
         return new UploadImageTask($id, $discord_image_url);
+    }
+
+    /**
+     * @param int $id
+     * @param string $url
+     * @return UploadImageTaskRepositoryInterface
+     */
+    protected function createRepositoryMockExpectCallMethodSaveWithDao(int $id, string $url): UploadImageTaskRepositoryInterface
+    {
+        $dao = new UploadImageTaskDao($id, $url);
+        $repository = $this->createMock(UploadImageTaskRepositoryInterface::class);
+        $repository->expects(self::once())
+            ->method('save')
+            ->with(
+                $this->objectEquals($dao)
+            );
+        return $repository;
     }
 }
