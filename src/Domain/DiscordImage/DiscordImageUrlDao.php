@@ -20,6 +20,6 @@ class DiscordImageUrlDao
 
     #[Pure] public function equals(self $image): bool
     {
-        return $this->getUrl() === $image->getUrl();
+        return $this->url === $image->url;
     }
 }

@@ -17,7 +17,7 @@ class DiscordImageDao
 
     #[Pure] public function equals(self $dao): bool
     {
-        return $this->getBytes() === $dao->getBytes();
+        return $this->bytes_of_image === $dao->bytes_of_image;
     }
 
     public function __construct(
