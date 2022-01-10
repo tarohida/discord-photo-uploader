@@ -9,11 +9,6 @@ class UploadImageTask
 {
     private int $id;
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
     /**
      * @throws InvalidIdException
      */
@@ -23,5 +18,10 @@ class UploadImageTask
             throw new InvalidIdException();
         }
         $this->id = $id;
+    }
+
+    public function equals(self $task): bool
+    {
+        return $this->id === $task->id;
     }
 }

@@ -13,10 +13,12 @@ use PHPUnit\Framework\TestCase;
 
 class UploadImageTaskTest extends TestCase
 {
-    public function test_method_getId()
+    public function test_method_equals()
     {
-        $expected_id = 1;
-        $task = new UploadImageTask($expected_id);
-        self::assertSame($expected_id, $task->getId());
+        $task1 = new UploadImageTask(1);
+        $task2 = new UploadImageTask(2);
+        $task3 = new UploadImageTask(1);
+        self::assertObjectEquals($task1, $task3);
+        self::assertFalse($task1->equals($task2));
     }
 }
