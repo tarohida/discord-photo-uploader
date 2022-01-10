@@ -35,10 +35,10 @@ class UploadImageTask
         $repository->save($dao);
     }
 
-    public function run(ImageStorageInterface $upload_client, ImageDownloadClientInterface $download_client, UploadImageTaskRepositoryInterface $repository)
+    public function run(ImageStorageInterface $image_storage, ImageDownloadClientInterface $download_client, UploadImageTaskRepositoryInterface $repository)
     {
         $image = $this->url->fetchImage($download_client);
-        $image->uploadTo($upload_client);
+        $image->uploadTo($image_storage);
         $repository->delete($this);
     }
 }
