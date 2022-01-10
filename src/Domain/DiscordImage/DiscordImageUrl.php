@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Domain\DiscordImage;
 
 use App\Domain\DiscordImage\Exception\UrlValidateException;
-use App\Infrastructure\ImageDownloadClient\ImageDownloadClientInterface;
+use App\Infrastructure\ImageDownloadClientInterface;
 use JetBrains\PhpStorm\Pure;
 
 class DiscordImageUrl

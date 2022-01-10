@@ -5,7 +5,7 @@ namespace App\Domain\UploadImageTask;
 
 use App\Domain\DiscordImage\DiscordImageUrl;
 use App\Domain\UploadImageTask\Exception\InvalidIdException;
-use App\Infrastructure\ImageDownloadClient\ImageDownloadClientInterface;
+use App\Infrastructure\ImageDownloadClientInterface;
 use App\Infrastructure\ImageStorageInterface;
 use App\Infrastructure\UploadImageTask\UploadImageTaskRepositoryInterface;
 
