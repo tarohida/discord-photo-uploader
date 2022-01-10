@@ -12,7 +12,7 @@ use App\Domain\UploadImageTask\Exception\InvalidIdException;
 use App\Domain\UploadImageTask\UploadImageTask;
 
 use App\Domain\UploadImageTask\UploadImageTaskDao;
-use App\Infrastructure\UploadImageTask\UploadImageTaskRepositoryInterface;
+use App\Domain\UploadImageTask\UploadImageTaskRepositoryInterface;
 use Tests\AppTestCase;
 
 class UploadImageTaskTest extends AppTestCase
