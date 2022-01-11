@@ -44,8 +44,8 @@ class UploadImageTaskTest extends AppTestCase
         $image_storage = $this->createImageStorageMockExpectCallMethodUploadWithExpectedImage($expected_image);
         $download_client = $this->createDownloadClientMockExpectCallMethodFetchImageWithUrlAndReturnImage($url, $expected_image);
         $task = new UploadImageTask(1, $discord_url);
-        $repository = $this->createUpdateImageTaskRepositoryMockExpectCallMethodDeleteWithExpectedTask($task);
-        $task->run($image_storage, $download_client, $repository);
+        $task_repository = $this->createTaskRepositoryMockExpectCallMethodDeleteWithExpectedTask($task);
+        $task->run($image_storage, $download_client, $task_repository);
     }
 
     /**
@@ -81,7 +81,7 @@ class UploadImageTaskTest extends AppTestCase
      * @param UploadImageTask $expected_task
      * @return UploadImageTaskRepositoryInterface
      */
-    protected function createUpdateImageTaskRepositoryMockExpectCallMethodDeleteWithExpectedTask(UploadImageTask $expected_task): UploadImageTaskRepositoryInterface
+    protected function createTaskRepositoryMockExpectCallMethodDeleteWithExpectedTask(UploadImageTask $expected_task): UploadImageTaskRepositoryInterface
     {
         $repository = $this->createMock(UploadImageTaskRepositoryInterface::class);
         $repository->expects(self::once())
