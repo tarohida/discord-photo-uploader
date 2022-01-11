@@ -20,7 +20,7 @@ class AppTestCase extends TestCase
      * @param string $expected_image
      * @return ImageStorageInterface
      */
-    protected function createUploadClientMockExpectCallMethodUploadWithExpectedImage(string $expected_image): ImageStorageInterface
+    protected function createImageStorageMockExpectCallMethodUploadWithExpectedImage(string $expected_image): ImageStorageInterface
     {
         $expected_dao = new DiscordImageDao($expected_image);
         $client = $this->createMock(ImageStorageInterface::class);
